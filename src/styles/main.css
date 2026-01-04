@@ -7,7 +7,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #000;               /* BLACK SIDES */
+  background: #000;
   color: #000;
 }
 
@@ -37,7 +37,7 @@ button {
 
 /* ================= TOP BANNER ================= */
 .top-banner {
-  position: relative;               /* 🔥 REQUIRED */
+  position: relative;
   width: 100%;
   height: 260px;
   background: #000;
@@ -51,31 +51,26 @@ button {
     0 0 25px rgba(255,215,0,0.6);
 }
 
-/* BANNER IMAGE */
 .top-banner img {
   width: 100%;
   height: 100%;
-  object-fit: cover;                /* FULL IMAGE */
-  object-position: center;
-  display: block;
+  object-fit: cover;
 }
 
-/* ================= BANNER MARQUEE ================= */
+/* ================= BANNER TEXT ================= */
 .banner-text {
   position: absolute;
   bottom: 18px;
   left: 0;
   width: 100%;
   overflow: hidden;
-  pointer-events: none;
   z-index: 3;
 }
 
 .banner-text span {
   display: inline-block;
   white-space: nowrap;
-  padding-left: 100%;               /* 🔥 KEY FIX */
-
+  padding-left: 100%;
   font-size: 42px;
   font-weight: bold;
   letter-spacing: 4px;
@@ -89,14 +84,9 @@ button {
   animation: bannerScroll 12s linear infinite;
 }
 
-/* FULL LEFT → RIGHT SCROLL */
 @keyframes bannerScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
 }
 
 /* ================= HEADER ================= */
@@ -112,8 +102,6 @@ button {
 
   border-radius: 8px;
   border: 2px solid #fff;
-
-  box-shadow: 0 0 15px rgba(255,215,0,0.4);
 }
 
 .header-box b {
@@ -121,78 +109,45 @@ button {
   font-size: 16px;
 }
 
-/* ================= COUNTDOWN ================= */
-.countdown {
-  margin-top: 10px;
-  background: #f1c40f;
-  color: #000;
-  text-align: center;
-  padding: 12px;
-  font-weight: bold;
-  font-size: 16px;
-
-  border-radius: 8px;
-  border: 2px solid #000;
-
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-}
-
-/* ================= TABLE WRAPPER ================= */
+/* ================= TABLE ================= */
 .table-wrapper {
   display: flex;
   justify-content: center;
   margin: 20px 0;
-  overflow-x: auto;
 }
 
-/* ================= BETTING TABLE ================= */
 .bet-table {
+  width: 100%;
   border-collapse: collapse;
-  min-width: 1100px;
   background: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  table-layout: fixed;
 
   box-shadow:
     0 0 20px rgba(0,0,0,0.7),
     0 0 15px rgba(255,215,0,0.5);
 }
 
-/* TABLE HEADERS */
 .bet-table th {
   background: red;
   color: #fff;
-  padding: 8px 6px;
+  padding: 8px 4px;
   font-size: 14px;
-  border: 1px solid #fff;
-  white-space: nowrap;
 }
 
-/* TABLE CELLS */
 .bet-table td {
   border: 1px solid #ddd;
-  padding: 6px;
+  padding: 6px 4px;
   text-align: center;
   font-size: 14px;
 }
 
-/* NAME COLUMN */
-.bet-table .name {
-  font-weight: bold;
-  line-height: 18px;
-}
-
-/* INPUT BOXES */
 .num-box {
-  width: 36px;
-  height: 26px;
-  text-align: center;
+  width: 34px;
+  height: 24px;
+  font-size: 13px;
   border-radius: 6px;
   border: 2px solid #000;
-  font-weight: bold;
-  outline: none;
-
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
 }
 
 /* ROW COLORS */
@@ -200,167 +155,89 @@ button {
 .row-orange { background: #ff6600; }
 .row-green  { background: #66ff66; }
 
-/* RESULT COLUMN */
-.result-cell {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* TOTAL ROW */
-.total-row {
-  background: orange;
-  font-size: 15px;
-  font-weight: bold;
-}
-
 /* ================= RESULT BUTTON ================= */
 .result-btn {
   display: block;
-  margin: 30px auto 40px;
+  margin: 30px auto;
   padding: 12px 45px;
   font-size: 20px;
   font-weight: bold;
   color: #fff;
-
   background: linear-gradient(#ff4d4d, #b30000);
   border-radius: 14px;
-  border: 3px solid #000000;
-
-  box-shadow:
-    0 0 20px rgba(255,0,0,0.8),
-    inset 0 0 10px rgba(0,0,0,0.6);
+  border: 3px solid #000;
 }
 
-.result-btn:hover {
-  transform: scale(1.05);
-}
-/* ================= ADMIN GLOBAL LAYOUT ================= */
+/* ================= ADMIN ================= */
 .admin-page {
   max-width: 520px;
   margin: 80px auto;
   padding: 28px;
-
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
-
-  /* subtle premium look */
   border: 3px solid #222;
-  box-shadow:
-    0 0 20px rgba(255,255,255,0.15),
-    0 0 35px rgba(255,215,0,0.35);
 }
 
-/* ================= ADMIN TITLE ================= */
-.admin-page h3 {
-  text-align: center;
-  margin-bottom: 22px;
-  color: #000;
-  font-size: 22px;
-  letter-spacing: 1px;
-}
-
-/* ================= ADMIN INPUTS ================= */
 .admin-page input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 12px;
   margin-bottom: 16px;
-
   font-size: 16px;
   border-radius: 8px;
   border: 2px solid #000;
-  outline: none;
-
-  background: #f9f9f9;
-  color: #000;
 }
 
-.admin-page input:focus {
-  border-color: #b30000;
-  box-shadow: 0 0 6px rgba(179,0,0,0.6);
-}
-
-/* ================= ADMIN BUTTON ================= */
 .admin-page button {
   width: 100%;
   padding: 14px;
   font-size: 18px;
   font-weight: bold;
-
-  color: #fff;
   background: linear-gradient(#ff4d4d, #b30000);
-
+  color: #fff;
   border-radius: 10px;
-  border: 3px solid #000;
-  cursor: pointer;
-
-  box-shadow:
-    0 0 15px rgba(255,0,0,0.6),
-    inset 0 0 10px rgba(0,0,0,0.5);
 }
 
-.admin-page button:hover {
-  transform: scale(1.04);
-}
-
-.admin-page button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* ================= CONFIRM / PUBLISH PAGE ================= */
-.admin-page button.confirm {
-  background: linear-gradient(#00cc66, #007a3d);
-  box-shadow:
-    0 0 15px rgba(0,204,102,0.6),
-    inset 0 0 10px rgba(0,0,0,0.5);
-}
-
-/* ================= MOBILE ADMIN ================= */
-@media (max-width: 768px) {
-  .admin-page {
-    margin: 40px 12px;
-    padding: 20px;
-  }
-
-  .admin-page h3 {
-    font-size: 20px;
-  }
-
-  .admin-page button {
-    font-size: 16px;
-  }
-}
-
-
-/* ================= MOBILE ================= */
+/* ================= MOBILE FULL TABLE FIT ================= */
 @media (max-width: 768px) {
 
   .page-wrapper {
     max-width: 100%;
-    border-left: none;
-    border-right: none;
-  }
-
-  .content-frame {
-    padding: 8px;
+    border: none;
   }
 
   .top-banner {
-    height: 180px;
+    height: 170px;
   }
 
   .banner-text span {
-    font-size: 26px;
+    font-size: 24px;
     letter-spacing: 2px;
   }
 
   .header-box {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    font-size: 13px;
+    font-size: 12px;
   }
 
+  /* 🔥 KEY FIX */
   .bet-table {
-    min-width: 1000px;
+    font-size: 10px;
+  }
+
+  .bet-table th,
+  .bet-table td {
+    padding: 4px 2px;
+    font-size: 10px;
+  }
+
+  .num-box {
+    width: 22px;
+    height: 18px;
+    font-size: 10px;
+  }
+
+  .result-btn {
+    font-size: 16px;
+    padding: 10px 30px;
   }
 }
