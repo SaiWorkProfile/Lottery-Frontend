@@ -43,7 +43,6 @@ body {
 .banner-text {
   position: absolute;
   bottom: 12px;
-  left: 0;
   width: 100%;
   overflow: hidden;
   pointer-events: none;
@@ -51,20 +50,20 @@ body {
 
 .banner-text span {
   display: inline-block;
+  padding-left: 100%;
   white-space: nowrap;
   font-size: 28px;
   font-weight: bold;
   color: gold;
-  transform: translateX(100%);
-  animation: marqueeMove 10s linear infinite;
+  animation: scrollText 12s linear infinite;
 }
 
-@keyframes marqueeMove {
-  from { transform: translateX(100%); }
-  to { transform: translateX(-120%); }
+@keyframes scrollText {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER INFO ================= */
 .header-box {
   margin-top: 10px;
   display: grid;
@@ -72,8 +71,8 @@ body {
   background: #5b1478;
   color: #ffeb3b;
   padding: 10px;
-  font-size: 12px;
   text-align: center;
+  font-size: 12px;
   border-radius: 8px;
 }
 
@@ -83,19 +82,17 @@ body {
   margin-top: 4px;
 }
 
-/* ================= TABLE ================= */
+/* ================= TABLE WRAPPER ================= */
 .table-wrapper {
   margin-top: 12px;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
-/* MAIN TABLE */
+/* ================= BETTING TABLE ================= */
 .bet-table {
-  min-width: 1100px;
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
   background: #fff;
 }
 
@@ -105,7 +102,7 @@ body {
   color: #fff;
   font-size: 12px;
   padding: 6px;
-  border: 1px solid #fff;
+  border: 1px solid #000;
   white-space: nowrap;
 }
 
@@ -113,13 +110,20 @@ body {
 .bet-table td {
   font-size: 12px;
   padding: 6px;
-  border: 1px solid #ddd;
+  border: 1px solid #000;
   text-align: center;
+  background: inherit;
 }
 
-/* INPUT */
+/* NAME COLUMN */
+.bet-table .name {
+  font-weight: bold;
+  line-height: 16px;
+}
+
+/* INPUT BOX */
 .num-box {
-  width: 34px;
+  width: 32px;
   height: 24px;
   font-size: 12px;
   border: 1px solid #000;
@@ -127,54 +131,43 @@ body {
 }
 
 /* ROW COLORS */
-.row-yellow td { background: #ffff66; }
-.row-orange td { background: #ff6600; }
-.row-green td  { background: #66ff66; }
+.row-yellow { background: #ffff66; }
+.row-orange { background: #ff6600; }
+.row-green  { background: #66ff66; }
 
-.total-row td {
+/* TOTAL ROW */
+.total-row {
   background: orange;
   font-weight: bold;
 }
 
-/* ================= STICKY LAST COLUMNS (FIXED) ================= */
-
-/* Common sticky behavior */
-.bet-table th.sticky,
-.bet-table td.sticky {
+/* ================= STICKY LAST 3 COLUMNS ================= */
+.bet-table .sticky {
   position: sticky;
-  z-index: 5;
-  border-left: 2px solid #000;
+  z-index: 3;
+  background: inherit !important;
 }
 
-/* RESULT */
-.bet-table th.result,
-.bet-table td.result {
+.bet-table .qty {
+  right: 120px;
+  min-width: 50px;
+}
+
+.bet-table .amount {
+  right: 60px;
+  min-width: 60px;
+}
+
+.bet-table .result {
   right: 0;
+  min-width: 60px;
 }
 
-/* AMOUNT */
-.bet-table th.amount,
-.bet-table td.amount {
-  right: 70px;
-}
-
-/* QTY */
-.bet-table th.qty,
-.bet-table td.qty {
-  right: 140px;
-}
-
-/* Preserve row colors on sticky cells */
-.row-yellow td.sticky { background: #ffff66; }
-.row-orange td.sticky { background: #ff6600; }
-.row-green  td.sticky { background: #66ff66; }
-.total-row td.sticky { background: orange; }
-
-/* Header colors for sticky */
+/* HEADER STICKY */
 .bet-table th.sticky {
-  background: red;
+  background: red !important;
   color: #fff;
-  z-index: 10;
+  z-index: 4;
 }
 
 /* ================= RESULT BUTTON ================= */
@@ -202,24 +195,57 @@ body {
   text-align: center;
 }
 
+/* ================= ADMIN ================= */
+.admin-page {
+  max-width: 520px;
+  margin: 60px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid #000;
+}
+
+.admin-page h3 {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.admin-page input,
+.admin-page button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.admin-page button {
+  background: linear-gradient(#ff4d4d, #b30000);
+  color: #fff;
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
+  .page-wrapper {
+    max-width: 100%;
+    border: none;
+  }
+
   .header-box {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 8px;
-  }
-
-  .header-box div:last-child {
-    grid-column: span 2;
-  }
-
-  .table-wrapper::after {
-    content: "← swipe to view →";
-    display: block;
-    text-align: center;
+    gap: 8px;
     font-size: 11px;
-    color: #333;
-    margin-top: 6px;
+  }
+
+  .banner-text span {
+    font-size: 22px;
+  }
+
+  .num-box {
+    width: 28px;
+    height: 22px;
+    font-size: 11px;
   }
 }
