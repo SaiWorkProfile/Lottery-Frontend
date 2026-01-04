@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #000;
-  overflow-x: hidden; /* 🔥 IMPORTANT */
+  overflow-x: hidden; /* prevent body scroll */
 }
 
 /* ================= PAGE WRAPPER ================= */
@@ -83,10 +83,14 @@ body {
 /* ================= TABLE ================= */
 .table-wrapper {
   margin-top: 12px;
+
+  /* 🔥 ONLY TABLE SCROLLS */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* KEEP TABLE FULL SIZE */
 .bet-table {
+  min-width: 1100px;      /* keep full columns */
   width: 100%;
   border-collapse: collapse;
   table-layout: auto;
@@ -98,6 +102,7 @@ body {
   color: #fff;
   font-size: 12px;
   padding: 6px;
+  white-space: nowrap;
 }
 
 .bet-table td {
@@ -150,17 +155,25 @@ body {
   text-align: center;
 }
 
-/* ================= MOBILE SCALE FIX ================= */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  /* 🔥 SCALE ENTIRE PAGE */
-  .page-wrapper {
-    transform: scale(0.82);
-    transform-origin: top center;
+  .header-box {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 8px;
   }
 
-  /* compensate height shrink */
-  body {
-    padding-bottom: 120px;
+  .header-box div:last-child {
+    grid-column: span 2; /* time to draw full width */
+  }
+
+  /* optional swipe hint */
+  .table-wrapper::after {
+    content: "⇠ swipe to view ⇢";
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: #333;
+    margin-top: 4px;
   }
 }
