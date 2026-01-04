@@ -3,16 +3,11 @@
   box-sizing: border-box;
 }
 
-/* ================= GLOBAL ================= */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #000;
   color: #000;
-}
-
-button {
-  cursor: pointer;
 }
 
 /* ================= PAGE WRAPPER ================= */
@@ -27,28 +22,22 @@ button {
 
   box-shadow:
     0 0 25px rgba(255,215,0,0.25),
-    inset 0 0 20px rgba(0,0,0,0.5);
+    inset 0 0 20px rgba(0,0,0,0.4);
 }
 
-/* ================= CONTENT FRAME ================= */
 .content-frame {
-  padding: 14px;
+  padding: 10px;
 }
 
 /* ================= TOP BANNER ================= */
 .top-banner {
   position: relative;
   width: 100%;
-  height: 260px;
+  height: 200px;
   background: #000;
   overflow: hidden;
-
   border-radius: 10px;
   border: 2px solid #fff;
-
-  box-shadow:
-    inset 0 0 30px rgba(0,0,0,0.7),
-    0 0 25px rgba(255,215,0,0.6);
 }
 
 .top-banner img {
@@ -60,144 +49,158 @@ button {
 /* ================= BANNER TEXT ================= */
 .banner-text {
   position: absolute;
-  bottom: 18px;
+  bottom: 12px;
   left: 0;
   width: 100%;
   overflow: hidden;
-  z-index: 3;
 }
 
 .banner-text span {
   display: inline-block;
-  white-space: nowrap;
   padding-left: 100%;
-  font-size: 42px;
+  white-space: nowrap;
+  font-size: 32px;
   font-weight: bold;
-  letter-spacing: 4px;
   color: #ffd700;
-
-  text-shadow:
-    0 0 8px #ffd700,
-    0 0 16px #ffcc00,
-    0 0 32px #ff9900;
-
-  animation: bannerScroll 12s linear infinite;
+  text-shadow: 0 0 10px #ffcc00;
+  animation: marquee 12s linear infinite;
 }
 
-@keyframes bannerScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER INFO ================= */
 .header-box {
-  margin-top: 14px;
+  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   background: #5b1478;
-  color: yellow;
-  padding: 14px;
+  color: #ffeb3b;
+  padding: 10px;
   text-align: center;
-  font-size: 14px;
-
+  font-size: 12px;
   border-radius: 8px;
-  border: 2px solid #fff;
 }
 
 .header-box b {
+  display: block;
+  margin-top: 4px;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* ================= TABLE ================= */
 .table-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  margin-top: 12px;
 }
 
+/* FULLY FIXED TABLE */
 .bet-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  border-radius: 12px;
   table-layout: fixed;
-
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.7),
-    0 0 15px rgba(255,215,0,0.5);
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
+/* HEADER */
 .bet-table th {
-  background: red;
+  background: #ff0000;
   color: #fff;
-  padding: 8px 4px;
-  font-size: 14px;
+  font-size: 11px;
+  padding: 4px;
+  border: 1px solid #fff;
 }
 
+/* CELLS */
 .bet-table td {
   border: 1px solid #ddd;
-  padding: 6px 4px;
   text-align: center;
-  font-size: 14px;
+  font-size: 11px;
+  padding: 4px;
 }
 
-.num-box {
-  width: 34px;
-  height: 24px;
-  font-size: 13px;
-  border-radius: 6px;
-  border: 2px solid #000;
+/* COLUMN WIDTHS (VERY IMPORTANT) */
+.bet-table th:nth-child(1),
+.bet-table td:nth-child(1) { width: 18%; } /* Name */
+
+.bet-table th:nth-child(2),
+.bet-table td:nth-child(2) { width: 6%; } /* Sr */
+
+.bet-table th:nth-child(3),
+.bet-table td:nth-child(3) { width: 8%; } /* Win */
+
+.bet-table th:nth-child(n+4):nth-child(-n+13),
+.bet-table td:nth-child(n+4):nth-child(-n+13) {
+  width: 5%; /* 0–9 */
 }
+
+.bet-table th:nth-last-child(3),
+.bet-table td:nth-last-child(3) { width: 6%; } /* Qty */
+
+.bet-table th:nth-last-child(2),
+.bet-table td:nth-last-child(2) { width: 8%; } /* Amount */
+
+.bet-table th:nth-last-child(1),
+.bet-table td:nth-last-child(1) { width: 8%; } /* Result */
 
 /* ROW COLORS */
 .row-yellow { background: #ffff66; }
-.row-orange { background: #ff6600; }
-.row-green  { background: #66ff66; }
+.row-orange { background: #ff7a00; }
+.row-green  { background: #39ff6b; }
+
+/* NAME COLUMN TEXT */
+.bet-table .name {
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+/* INPUT BOX */
+.num-box {
+  width: 100%;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* TOTAL ROW */
+.total-row {
+  background: orange;
+  font-weight: bold;
+}
 
 /* ================= RESULT BUTTON ================= */
 .result-btn {
+  margin: 20px auto;
   display: block;
-  margin: 30px auto;
-  padding: 12px 45px;
-  font-size: 20px;
+  padding: 10px 35px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
   background: linear-gradient(#ff4d4d, #b30000);
-  border-radius: 14px;
+  border-radius: 12px;
   border: 3px solid #000;
 }
 
-/* ================= ADMIN ================= */
-.admin-page {
-  max-width: 520px;
-  margin: 80px auto;
-  padding: 28px;
-  background: #fff;
-  border-radius: 12px;
-  border: 3px solid #222;
-}
-
-.admin-page input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 16px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 2px solid #000;
-}
-
-.admin-page button {
-  width: 100%;
+/* ================= DISCLAIMER ================= */
+.site-disclaimer {
+  margin-top: 20px;
+  background: #222;
+  color: #ddd;
+  font-size: 12px;
+  line-height: 18px;
   padding: 14px;
-  font-size: 18px;
-  font-weight: bold;
-  background: linear-gradient(#ff4d4d, #b30000);
-  color: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
+  text-align: center;
 }
 
-/* ================= MOBILE FULL TABLE FIT ================= */
+/* ================= MOBILE ONLY ================= */
 @media (max-width: 768px) {
 
   .page-wrapper {
@@ -206,38 +209,25 @@ button {
   }
 
   .top-banner {
-    height: 170px;
+    height: 160px;
   }
 
   .banner-text span {
     font-size: 24px;
-    letter-spacing: 2px;
   }
 
   .header-box {
     grid-template-columns: repeat(2, 1fr);
-    font-size: 12px;
+    row-gap: 8px;
+    font-size: 11px;
   }
 
-  /* 🔥 KEY FIX */
-  .bet-table {
-    font-size: 10px;
+  .header-box b {
+    font-size: 13px;
   }
 
-  .bet-table th,
-  .bet-table td {
-    padding: 4px 2px;
-    font-size: 10px;
-  }
-
-  .num-box {
-    width: 22px;
-    height: 18px;
-    font-size: 10px;
-  }
-
-  .result-btn {
-    font-size: 16px;
-    padding: 10px 30px;
+  /* HARD STOP SCROLLING */
+  body {
+    overflow-x: hidden;
   }
 }
