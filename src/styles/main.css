@@ -39,26 +39,33 @@ body {
   object-fit: cover;
 }
 
-/* ================= BANNER TEXT ================= */
+/* ================= BANNER TEXT (SCROLLING) ================= */
 .banner-text {
   position: absolute;
   bottom: 12px;
+  left: 0;
   width: 100%;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .banner-text span {
-  padding-left: 100%;
+  display: inline-block;
   white-space: nowrap;
   font-size: 28px;
   font-weight: bold;
   color: gold;
-  animation: scrollText 12s linear infinite;
+  transform: translateX(100%);
+  animation: marqueeMove 10s linear infinite;
 }
 
-@keyframes scrollText {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-120%);
+  }
 }
 
 /* ================= HEADER INFO ================= */
@@ -83,28 +90,29 @@ body {
 /* ================= TABLE ================= */
 .table-wrapper {
   margin-top: 12px;
-
-  /* 🔥 ONLY TABLE SCROLLS */
-  overflow-x: auto;
+  overflow-x: auto;                /* 🔥 horizontal scroll */
   -webkit-overflow-scrolling: touch;
 }
 
+/* KEEP FULL TABLE WIDTH */
 .bet-table {
-  min-width: 1100px;      /* keep full columns */
+  min-width: 1100px;
   width: 100%;
   border-collapse: collapse;
-  table-layout: auto;
   background: #fff;
 }
 
+/* TABLE HEADERS */
 .bet-table th {
   background: red;
   color: #fff;
   font-size: 12px;
   padding: 6px;
+  border: 1px solid #fff;
   white-space: nowrap;
 }
 
+/* TABLE CELLS */
 .bet-table td {
   font-size: 12px;
   padding: 6px;
@@ -112,6 +120,7 @@ body {
   text-align: center;
 }
 
+/* INPUT BOX */
 .num-box {
   width: 36px;
   height: 26px;
@@ -128,6 +137,43 @@ body {
 .total-row {
   background: orange;
   font-weight: bold;
+}
+
+/* ================= STICKY LAST 3 COLUMNS ================= */
+
+/* RESULT (last column) */
+.bet-table th:last-child,
+.bet-table td:last-child {
+  position: sticky;
+  right: 0;
+  background: #fff;
+  z-index: 4;
+}
+
+/* AMOUNT (2nd last) */
+.bet-table th:nth-last-child(2),
+.bet-table td:nth-last-child(2) {
+  position: sticky;
+  right: 60px;
+  background: #fff;
+  z-index: 3;
+}
+
+/* QTY (3rd last) */
+.bet-table th:nth-last-child(3),
+.bet-table td:nth-last-child(3) {
+  position: sticky;
+  right: 120px;
+  background: #fff;
+  z-index: 2;
+}
+
+/* Header color fix for sticky columns */
+.bet-table th:last-child,
+.bet-table th:nth-last-child(2),
+.bet-table th:nth-last-child(3) {
+  background: red;
+  color: #fff;
 }
 
 /* ================= RESULT BUTTON ================= */
@@ -167,7 +213,7 @@ body {
     grid-column: span 2; /* time to draw full width */
   }
 
-  /* optional swipe hint */
+  /* swipe hint */
   .table-wrapper::after {
     content: "⇠ swipe to view ⇢";
     display: block;
