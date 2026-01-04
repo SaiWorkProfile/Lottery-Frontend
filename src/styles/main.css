@@ -3,7 +3,6 @@
   box-sizing: border-box;
 }
 
-/* ================= GLOBAL ================= */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -27,10 +26,9 @@ button {
 
   box-shadow:
     0 0 25px rgba(255,215,0,0.25),
-    inset 0 0 20px rgba(0,0,0,0.5);
+    inset 0 0 20px rgba(0,0,0,0.4);
 }
 
-/* ================= CONTENT FRAME ================= */
 .content-frame {
   padding: 12px;
 }
@@ -39,11 +37,16 @@ button {
 .top-banner {
   position: relative;
   width: 100%;
-  height: 260px;
+  height: 240px;
   background: #000;
   overflow: hidden;
+
   border-radius: 10px;
   border: 2px solid #fff;
+
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,0.7),
+    0 0 25px rgba(255,215,0,0.6);
 }
 
 .top-banner img {
@@ -55,37 +58,49 @@ button {
 /* ================= BANNER TEXT ================= */
 .banner-text {
   position: absolute;
-  bottom: 12px;
+  bottom: 16px;
+  left: 0;
   width: 100%;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .banner-text span {
   display: inline-block;
-  padding-left: 100%;
   white-space: nowrap;
+  padding-left: 100%;
+
   font-size: 36px;
   font-weight: bold;
-  color: gold;
-  animation: bannerScroll 14s linear infinite;
+  letter-spacing: 3px;
+  color: #ffd700;
+
+  text-shadow:
+    0 0 8px #ffd700,
+    0 0 18px #ffb700;
+
+  animation: bannerScroll 12s linear infinite;
 }
 
 @keyframes bannerScroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  to   { transform: translateX(-100%); }
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER INFO ================= */
 .header-box {
-  margin-top: 10px;
+  margin-top: 12px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+
   background: #5b1478;
   color: yellow;
   padding: 10px;
   text-align: center;
-  font-size: 13px;
+
   border-radius: 8px;
+  border: 2px solid #fff;
 }
 
 .header-box b {
@@ -95,51 +110,83 @@ button {
 
 /* ================= TABLE ================= */
 .table-wrapper {
-  width: 100%;
-  margin: 15px 0;
+  margin-top: 14px;
+  overflow: hidden;   /* 🔥 NO SCROLL */
 }
 
-/* DESKTOP TABLE */
 .bet-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   background: #fff;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 /* HEADERS */
 .bet-table th {
   background: red;
   color: #fff;
-  font-size: 13px;
-  padding: 6px 2px;
+  font-size: 11px;
+  padding: 4px 2px;
   border: 1px solid #fff;
 }
 
 /* CELLS */
 .bet-table td {
-  border: 1px solid #ddd;
+  font-size: 11px;
   padding: 4px 2px;
-  font-size: 13px;
+  border: 1px solid #ddd;
   text-align: center;
 }
 
-/* NAME COLUMN */
-.bet-table .name {
+/* COLUMN WIDTHS */
+.bet-table th:nth-child(1),
+.bet-table td:nth-child(1) {
+  width: 70px;
   font-weight: bold;
-  text-align: left;
-  padding-left: 6px;
+  word-break: break-word;
+  line-height: 14px;
 }
 
-/* INPUT */
-.num-box {
+.bet-table th:nth-child(2),
+.bet-table td:nth-child(2) {
+  width: 26px;
+}
+
+.bet-table th:nth-child(3),
+.bet-table td:nth-child(3) {
+  width: 34px;
+}
+
+.bet-table th:nth-child(n+4):nth-child(-n+13),
+.bet-table td:nth-child(n+4):nth-child(-n+13) {
+  width: 26px;
+}
+
+.bet-table th:nth-child(14),
+.bet-table td:nth-child(14) {
   width: 30px;
-  height: 22px;
-  font-size: 12px;
-  border-radius: 5px;
-  border: 1px solid #000;
-  text-align: center;
+}
+
+.bet-table th:nth-child(15),
+.bet-table td:nth-child(15) {
+  width: 38px;
+}
+
+.bet-table th:nth-child(16),
+.bet-table td:nth-child(16) {
+  width: 32px;
+}
+
+/* INPUT BOX */
+.num-box {
+  width: 22px;
+  height: 20px;
+  font-size: 11px;
+  border-radius: 4px;
+  border: 2px solid #000;
+  font-weight: bold;
 }
 
 /* ROW COLORS */
@@ -154,124 +201,89 @@ button {
 
 /* ================= RESULT BUTTON ================= */
 .result-btn {
+  margin: 18px auto 22px;
   display: block;
-  margin: 20px auto 30px;
-  padding: 10px 35px;
+  padding: 10px 36px;
   font-size: 18px;
   font-weight: bold;
+
   color: #fff;
   background: linear-gradient(#ff4d4d, #b30000);
   border-radius: 12px;
   border: 3px solid #000;
+
+  box-shadow:
+    0 0 18px rgba(255,0,0,0.8),
+    inset 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* ================= ADMIN ================= */
+/* ================= DISCLAIMER ================= */
+.site-disclaimer {
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ddd;
+  background: #222;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* ================= ADMIN PAGES ================= */
 .admin-page {
-  max-width: 500px;
-  margin: 50px auto;
+  max-width: 520px;
+  margin: 60px auto;
   padding: 24px;
+
   background: #fff;
   border-radius: 12px;
-  border: 3px solid #000;
+  border: 3px solid #222;
+
+  box-shadow:
+    0 0 20px rgba(255,215,0,0.3);
+}
+
+.admin-page h3 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .admin-page input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 14px;
-  font-size: 15px;
+  border-radius: 8px;
+  border: 2px solid #000;
 }
 
 .admin-page button {
   width: 100%;
-  padding: 12px;
-  font-size: 17px;
-  background: linear-gradient(#ff4d4d, #b30000);
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+
   color: #fff;
+  background: linear-gradient(#ff4d4d, #b30000);
   border-radius: 10px;
+  border: 3px solid #000;
 }
 
-/* ================= MOBILE FIX (NO SCROLL) ================= */
+/* ================= MOBILE TWEAKS ================= */
 @media (max-width: 768px) {
 
-  .page-wrapper {
-    max-width: 100%;
-    border: none;
-  }
-
-  .content-frame {
-    padding: 6px;
-  }
-
   .top-banner {
-    height: 150px;
+    height: 180px;
   }
 
   .banner-text span {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .header-box {
     grid-template-columns: repeat(2, 1fr);
-    font-size: 11px;
   }
 
-  /* 🔥 KEY MOBILE TABLE FIX */
-  .bet-table {
-    font-size: 10px;
-  }
-
-  .bet-table th {
-    font-size: 10px;
-    padding: 4px 1px;
-  }
-
-  .bet-table td {
-    font-size: 10px;
-    padding: 3px 1px;
-  }
-
-  .bet-table .name {
-    font-size: 10px;
-  }
-
-  .num-box {
-    width: 22px;
-    height: 18px;
-    font-size: 10px;
-  }
-
-  .result-btn {
-    font-size: 16px;
-    padding: 8px 28px;
-  }
-}
-/* ================= DISCLAIMER FOOTER ================= */
-.site-disclaimer {
-  width: 100%;
-  background: #2a2a2a;
-  color: #dddddd;
-  padding: 14px 10px;
-  margin-top: 30px;
-
-  font-size: 12px;
-  line-height: 1.6;
-  text-align: center;
-
-  border-top: 2px solid #ffd700;
-
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
-}
-
-.site-disclaimer p {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* ================= MOBILE DISCLAIMER ================= */
-@media (max-width: 768px) {
   .site-disclaimer {
     font-size: 11px;
-    padding: 12px 8px;
   }
 }
