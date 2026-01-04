@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #000;
-  overflow-x: hidden; /* prevent body scroll */
+  overflow-x: hidden;
 }
 
 /* ================= PAGE WRAPPER ================= */
@@ -39,7 +39,7 @@ body {
   object-fit: cover;
 }
 
-/* ================= BANNER TEXT (SCROLLING) ================= */
+/* ================= BANNER TEXT ================= */
 .banner-text {
   position: absolute;
   bottom: 12px;
@@ -60,15 +60,11 @@ body {
 }
 
 @keyframes marqueeMove {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-120%);
-  }
+  from { transform: translateX(100%); }
+  to { transform: translateX(-120%); }
 }
 
-/* ================= HEADER INFO ================= */
+/* ================= HEADER ================= */
 .header-box {
   margin-top: 10px;
   display: grid;
@@ -76,8 +72,8 @@ body {
   background: #5b1478;
   color: #ffeb3b;
   padding: 10px;
-  text-align: center;
   font-size: 12px;
+  text-align: center;
   border-radius: 8px;
 }
 
@@ -90,19 +86,20 @@ body {
 /* ================= TABLE ================= */
 .table-wrapper {
   margin-top: 12px;
-  overflow-x: auto;                /* 🔥 horizontal scroll */
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* KEEP FULL TABLE WIDTH */
+/* MAIN TABLE */
 .bet-table {
   min-width: 1100px;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  border-collapse: collapse;
   background: #fff;
 }
 
-/* TABLE HEADERS */
+/* HEADERS */
 .bet-table th {
   background: red;
   color: #fff;
@@ -112,7 +109,7 @@ body {
   white-space: nowrap;
 }
 
-/* TABLE CELLS */
+/* CELLS */
 .bet-table td {
   font-size: 12px;
   padding: 6px;
@@ -120,60 +117,64 @@ body {
   text-align: center;
 }
 
-/* INPUT BOX */
+/* INPUT */
 .num-box {
-  width: 36px;
-  height: 26px;
+  width: 34px;
+  height: 24px;
   font-size: 12px;
   border: 1px solid #000;
   text-align: center;
 }
 
 /* ROW COLORS */
-.row-yellow { background: #ffff66; }
-.row-orange { background: #ff6600; }
-.row-green  { background: #66ff66; }
+.row-yellow td { background: #ffff66; }
+.row-orange td { background: #ff6600; }
+.row-green td  { background: #66ff66; }
 
-.total-row {
+.total-row td {
   background: orange;
   font-weight: bold;
 }
 
-/* ================= STICKY LAST 3 COLUMNS ================= */
+/* ================= STICKY LAST COLUMNS (FIXED) ================= */
 
-/* RESULT (last column) */
-.bet-table th:last-child,
-.bet-table td:last-child {
+/* Common sticky behavior */
+.bet-table th.sticky,
+.bet-table td.sticky {
   position: sticky;
+  z-index: 5;
+  border-left: 2px solid #000;
+}
+
+/* RESULT */
+.bet-table th.result,
+.bet-table td.result {
   right: 0;
-  background: #fff;
-  z-index: 4;
 }
 
-/* AMOUNT (2nd last) */
-.bet-table th:nth-last-child(2),
-.bet-table td:nth-last-child(2) {
-  position: sticky;
-  right: 60px;
-  background: #fff;
-  z-index: 3;
+/* AMOUNT */
+.bet-table th.amount,
+.bet-table td.amount {
+  right: 70px;
 }
 
-/* QTY (3rd last) */
-.bet-table th:nth-last-child(3),
-.bet-table td:nth-last-child(3) {
-  position: sticky;
-  right: 120px;
-  background: #fff;
-  z-index: 2;
+/* QTY */
+.bet-table th.qty,
+.bet-table td.qty {
+  right: 140px;
 }
 
-/* Header color fix for sticky columns */
-.bet-table th:last-child,
-.bet-table th:nth-last-child(2),
-.bet-table th:nth-last-child(3) {
+/* Preserve row colors on sticky cells */
+.row-yellow td.sticky { background: #ffff66; }
+.row-orange td.sticky { background: #ff6600; }
+.row-green  td.sticky { background: #66ff66; }
+.total-row td.sticky { background: orange; }
+
+/* Header colors for sticky */
+.bet-table th.sticky {
   background: red;
   color: #fff;
+  z-index: 10;
 }
 
 /* ================= RESULT BUTTON ================= */
@@ -210,16 +211,15 @@ body {
   }
 
   .header-box div:last-child {
-    grid-column: span 2; /* time to draw full width */
+    grid-column: span 2;
   }
 
-  /* swipe hint */
   .table-wrapper::after {
-    content: "⇠ swipe to view ⇢";
+    content: "← swipe to view →";
     display: block;
     text-align: center;
     font-size: 11px;
     color: #333;
-    margin-top: 4px;
+    margin-top: 6px;
   }
 }

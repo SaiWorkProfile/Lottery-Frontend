@@ -16,7 +16,9 @@ export default function BettingTable() {
 
   /* 🔹 Fetch ADMIN result column */
   useEffect(() => {
-    API.get("/current-draw").then(res => setResult(res.data));
+    API.get("/current-draw")
+      .then(res => setResult(res.data))
+      .catch(() => {});
   }, []);
 
   const onChange = (row, num, value) => {
@@ -29,40 +31,54 @@ export default function BettingTable() {
   };
 
   const calcQty = row =>
-    Object.values(data[row]).reduce((s,v)=>s+Number(v||0),0);
+    Object.values(data[row]).reduce((s,v)=>s + Number(v || 0), 0);
 
   const calcAmount = row => calcQty(row) * 11;
 
-  const totalQty = calcQty("A") + calcQty("B") + calcQty("C");
+  const totalQty =
+    calcQty("A") + calcQty("B") + calcQty("C");
+
   const totalAmount = totalQty * 11;
 
   const getResultValue = sr => {
     if (!result) return "--";
-    if (sr === "A") return result.satyamA;
-    if (sr === "B") return result.satyamB;
-    if (sr === "C") return result.satyamC;
+    if (sr === "A") return result.satyamA || "--";
+    if (sr === "B") return result.satyamB || "--";
+    if (sr === "C") return result.satyamC || "--";
     return "--";
   };
 
   return (
-    <div className="table-wrapper center-table">
+    <div className="table-wrapper">
       <table className="bet-table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Sr</th>
             <th>Win</th>
-            {numbers.map(n => <th key={n}>{n}</th>)}
-            <th>Qty</th>
-            <th>Amount</th>
-            <th>{result?.drawTime || "--"}</th>
+
+            {numbers.map(n => (
+              <th key={n}>{n}</th>
+            ))}
+
+            {/* 🔥 STICKY HEADERS */}
+            <th className="qty sticky">Qty</th>
+            <th className="amount sticky">Amount</th>
+            <th className="result sticky">
+              {result?.drawTime || "--"}
+            </th>
           </tr>
         </thead>
 
         <tbody>
           {rows.map(row => (
             <tr key={row.sr} className={row.color}>
-              <td className="name">{row.name}<br/>DELUXE</td>
+              <td className="name">
+                {row.name}
+                <br />
+                <small>DELUXE</small>
+              </td>
+
               <td>{row.sr}</td>
               <td>100</td>
 
@@ -71,26 +87,43 @@ export default function BettingTable() {
                   <input
                     className="num-box"
                     value={data[row.sr][n] || ""}
-                    onChange={e=>onChange(row.sr,n,e.target.value)}
+                    onChange={e =>
+                      onChange(row.sr, n, e.target.value)
+                    }
                   />
                 </td>
               ))}
 
-              <td><b>{calcQty(row.sr)}</b></td>
-              <td><b>{calcAmount(row.sr)}</b></td>
+              {/* 🔥 STICKY CELLS */}
+              <td className="qty sticky">
+                <b>{calcQty(row.sr)}</b>
+              </td>
 
-              {/* 🔴 ADMIN RESULT COLUMN */}
-              <td className="result-cell">
+              <td className="amount sticky">
+                <b>{calcAmount(row.sr)}</b>
+              </td>
+
+              <td className="result sticky result-cell">
                 <b>{getResultValue(row.sr)}</b>
               </td>
             </tr>
           ))}
 
+          {/* TOTAL ROW */}
           <tr className="total-row">
-            <td colSpan="13" style={{textAlign:"right"}}>Total</td>
-            <td><b>{totalQty}</b></td>
-            <td><b>{totalAmount}</b></td>
-            <td></td>
+            <td colSpan={13} style={{ textAlign: "right" }}>
+              Total
+            </td>
+
+            <td className="qty sticky">
+              <b>{totalQty}</b>
+            </td>
+
+            <td className="amount sticky">
+              <b>{totalAmount}</b>
+            </td>
+
+            <td className="result sticky"></td>
           </tr>
         </tbody>
       </table>
