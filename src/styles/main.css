@@ -7,46 +7,27 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #000;
-  color: #000;
 }
 
-button {
-  cursor: pointer;
-}
-
-/* ================= PAGE WRAPPER ================= */
+/* ================= PAGE ================= */
 .page-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 100vh;
   background: #55E2E9;
-
-  border-left: 4px solid #fff;
-  border-right: 4px solid #fff;
-
-  box-shadow:
-    0 0 25px rgba(255,215,0,0.25),
-    inset 0 0 20px rgba(0,0,0,0.4);
+  min-height: 100vh;
 }
 
 .content-frame {
-  padding: 12px;
+  padding: 8px;
 }
 
-/* ================= TOP BANNER ================= */
+/* ================= BANNER ================= */
 .top-banner {
   position: relative;
-  width: 100%;
-  height: 240px;
-  background: #000;
-  overflow: hidden;
-
+  height: 200px;
   border-radius: 10px;
+  overflow: hidden;
   border: 2px solid #fff;
-
-  box-shadow:
-    inset 0 0 30px rgba(0,0,0,0.7),
-    0 0 25px rgba(255,215,0,0.6);
 }
 
 .top-banner img {
@@ -55,144 +36,110 @@ button {
   object-fit: cover;
 }
 
-/* ================= BANNER TEXT ================= */
 .banner-text {
   position: absolute;
-  bottom: 16px;
-  left: 0;
+  bottom: 10px;
   width: 100%;
   overflow: hidden;
-  pointer-events: none;
 }
 
 .banner-text span {
-  display: inline-block;
-  white-space: nowrap;
   padding-left: 100%;
-
-  font-size: 36px;
+  font-size: 22px;
   font-weight: bold;
-  letter-spacing: 3px;
-  color: #ffd700;
-
-  text-shadow:
-    0 0 8px #ffd700,
-    0 0 18px #ffb700;
-
-  animation: bannerScroll 12s linear infinite;
+  color: gold;
+  white-space: nowrap;
+  animation: scroll 12s linear infinite;
 }
 
-@keyframes bannerScroll {
+@keyframes scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-
-/* ================= HEADER INFO ================= */
-.header-box {
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
-
-  background: #5b1478;
-  color: yellow;
-  padding: 10px;
-  text-align: center;
-
-  border-radius: 8px;
-  border: 2px solid #fff;
-}
-
-.header-box b {
-  color: #fff;
-  font-size: 14px;
+  to { transform: translateX(-100%); }
 }
 
 /* ================= TABLE ================= */
 .table-wrapper {
-  margin-top: 14px;
-  overflow: hidden;   /* 🔥 NO SCROLL */
+  margin-top: 10px;
+  overflow: hidden; /* 🚫 NO SCROLL */
 }
 
 .bet-table {
   width: 100%;
-  border-collapse: collapse;
   table-layout: fixed;
+  border-collapse: collapse;
   background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 8px;
 }
 
 /* HEADERS */
 .bet-table th {
   background: red;
   color: #fff;
-  font-size: 11px;
-  padding: 4px 2px;
+  font-size: 10px;
+  padding: 3px 1px;
   border: 1px solid #fff;
 }
 
 /* CELLS */
 .bet-table td {
-  font-size: 11px;
-  padding: 4px 2px;
+  font-size: 10px;
+  padding: 3px 1px;
   border: 1px solid #ddd;
   text-align: center;
 }
 
-/* COLUMN WIDTHS */
+/* COLUMN WIDTHS (CRITICAL) */
 .bet-table th:nth-child(1),
 .bet-table td:nth-child(1) {
-  width: 70px;
+  width: 60px;
   font-weight: bold;
   word-break: break-word;
-  line-height: 14px;
+  line-height: 12px;
 }
 
 .bet-table th:nth-child(2),
 .bet-table td:nth-child(2) {
-  width: 26px;
+  width: 22px;
 }
 
 .bet-table th:nth-child(3),
 .bet-table td:nth-child(3) {
-  width: 34px;
+  width: 26px;
 }
 
 .bet-table th:nth-child(n+4):nth-child(-n+13),
 .bet-table td:nth-child(n+4):nth-child(-n+13) {
-  width: 26px;
+  width: 20px;
 }
 
 .bet-table th:nth-child(14),
 .bet-table td:nth-child(14) {
-  width: 30px;
+  width: 24px;
 }
 
 .bet-table th:nth-child(15),
 .bet-table td:nth-child(15) {
-  width: 38px;
+  width: 28px;
 }
 
 .bet-table th:nth-child(16),
 .bet-table td:nth-child(16) {
-  width: 32px;
+  width: 24px;
 }
 
-/* INPUT BOX */
+/* INPUT */
 .num-box {
-  width: 22px;
-  height: 20px;
-  font-size: 11px;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
   border-radius: 4px;
   border: 2px solid #000;
-  font-weight: bold;
 }
 
 /* ROW COLORS */
 .row-yellow { background: #ffff66; }
 .row-orange { background: #ff6600; }
-.row-green  { background: #66ff66; }
+.row-green { background: #66ff66; }
 
 .total-row {
   background: orange;
@@ -201,89 +148,39 @@ button {
 
 /* ================= RESULT BUTTON ================= */
 .result-btn {
-  margin: 18px auto 22px;
-  display: block;
-  padding: 10px 36px;
-  font-size: 18px;
+  margin: 16px auto;
+  padding: 10px 30px;
+  font-size: 16px;
   font-weight: bold;
-
-  color: #fff;
   background: linear-gradient(#ff4d4d, #b30000);
+  color: #fff;
   border-radius: 12px;
   border: 3px solid #000;
-
-  box-shadow:
-    0 0 18px rgba(255,0,0,0.8),
-    inset 0 0 10px rgba(0,0,0,0.5);
+  display: block;
 }
 
 /* ================= DISCLAIMER ================= */
 .site-disclaimer {
-  margin-top: 20px;
-  padding: 14px;
-  font-size: 12px;
-  line-height: 18px;
-  color: #ddd;
+  margin-top: 14px;
+  padding: 12px;
+  font-size: 11px;
+  line-height: 16px;
   background: #222;
+  color: #ddd;
   border-radius: 6px;
   text-align: center;
 }
 
-/* ================= ADMIN PAGES ================= */
-.admin-page {
-  max-width: 520px;
-  margin: 60px auto;
-  padding: 24px;
-
-  background: #fff;
-  border-radius: 12px;
-  border: 3px solid #222;
-
-  box-shadow:
-    0 0 20px rgba(255,215,0,0.3);
-}
-
-.admin-page h3 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.admin-page input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 14px;
-  border-radius: 8px;
-  border: 2px solid #000;
-}
-
-.admin-page button {
-  width: 100%;
-  padding: 14px;
-  font-size: 18px;
-  font-weight: bold;
-
-  color: #fff;
-  background: linear-gradient(#ff4d4d, #b30000);
-  border-radius: 10px;
-  border: 3px solid #000;
-}
-
-/* ================= MOBILE TWEAKS ================= */
-@media (max-width: 768px) {
-
-  .top-banner {
-    height: 180px;
+/* ================= MOBILE EXTRA ================= */
+@media (max-width: 360px) {
+  .bet-table th,
+  .bet-table td {
+    font-size: 9px;
   }
 
-  .banner-text span {
-    font-size: 24px;
-  }
-
-  .header-box {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .site-disclaimer {
-    font-size: 11px;
+  .num-box {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
   }
 }
