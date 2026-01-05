@@ -1,10 +1,9 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://lottery-backend-1-noll.onrender.com",
   headers: {
-    "Content-Type": "application/json",
-    "X-ADMIN-KEY": "DISAWAR@2026"
+    "Content-Type": "application/json"
   }
 });
 
