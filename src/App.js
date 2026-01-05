@@ -10,15 +10,16 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* USER PAGES */}
-        <Route path="/" element={<Home />} />
-        <Route path="/results" element={<Results />} />
+  {/* USER */}
+  <Route path="/" element={<Home />} />
+  <Route path="/results" element={<Results />} />
 
-        {/* ADMIN PAGES (NO LOGIN, DIRECT URL) */}
-        <Route path="/admin/draw" element={<AdminDrawSettings />} />
-        <Route path="/admin/current" element={<AdminCurrentDraw />} />
-        <Route path="/admin/publish" element={<AdminPublish />} />
-      </Routes>
+  {/* 🔒 ADMIN – OBFUSCATED URL */}
+  <Route path="/x9p7kA2_2026/admin/draw" element={<AdminDrawSettings />} />
+  <Route path="/x9p7kA2_2026/admin/current" element={<AdminCurrentDraw />} />
+  <Route path="/x9p7kA2_2026/admin/publish" element={<AdminPublish />} />
+</Routes>
+
     </BrowserRouter>
   );
 }
