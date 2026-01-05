@@ -6,7 +6,7 @@ export default function AdminCurrentDraw() {
 
   const save = async () => {
     try {
-      await adminApi.post("/admin/current-draw", f);
+      await adminApi.post("/x9p7kA2_2026/admin-panel/current-draw", f);
       alert("Saved");
     } catch (e) {
       alert("Save failed");

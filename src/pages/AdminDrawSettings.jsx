@@ -15,7 +15,7 @@ export default function AdminDrawSettings() {
     try {
       setLoading(true);
 
-      await adminApi.post("/admin/draw-settings", {
+      await adminApi.post("/x9p7kA2_2026/admin-panel/draw-settings", {
         visitors: Number(visitors),
         nextDrawTime: time
       });

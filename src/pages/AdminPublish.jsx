@@ -8,7 +8,7 @@ export default function AdminPublish() {
     if (!window.confirm("Publish result?")) return;
 
     try {
-      await adminApi.post("/admin/publish-result");
+      await adminApi.post("/x9p7kA2_2026/admin-panel/publish-result");
       alert("Result published");
       navigate("/results");
     } catch (e) {
