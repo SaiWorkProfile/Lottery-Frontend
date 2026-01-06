@@ -1,55 +1,46 @@
 import { useEffect, useState } from "react";
 
-export default function Countdown({ seconds }) {
+export default function Countdown({ drawTime }) {
+  const [timeLeft, setTimeLeft] = useState(null);
 
-  const isValidSeconds =
-    typeof seconds === "number" &&
-    seconds > 0 &&
-    seconds < 86399; // ❌ block 23:59:59 & above
-
-  const [timeLeft, setTimeLeft] = useState(
-    isValidSeconds ? seconds : null
-  );
-
-  // 🔁 React when admin updates time
   useEffect(() => {
-    if (
-      typeof seconds === "number" &&
-      seconds > 0 &&
-      seconds < 86399
-    ) {
-      setTimeLeft(seconds);
-    } else {
-      setTimeLeft(null); // show --:--:--
+    if (!drawTime) {
+      setTimeLeft(null);
+      return;
     }
-  }, [seconds]);
 
-  // ⏱ Countdown
-  useEffect(() => {
-    if (timeLeft === null) return;
+    const calculate = () => {
+      const now = new Date();
 
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          return null; // stop at zero
-        }
-        return prev - 1;
-      });
-    }, 1000);
+      // drawTime example: "11:00 PM"
+      const [time, meridian] = drawTime.split(" ");
+      let [h, m] = time.split(":").map(Number);
 
-    return () => clearInterval(timer);
-  }, [timeLeft]);
+      if (meridian === "PM" && h !== 12) h += 12;
+      if (meridian === "AM" && h === 12) h = 0;
 
-  // ❌ Disabled state
-  if (timeLeft === null) {
-    return <span>--:--:--</span>;
-  }
+      const draw = new Date();
+      draw.setHours(h, m, 0, 0);
 
-  // ✅ Format time
-  const h = String(Math.floor(timeLeft / 3600)).padStart(2, "0");
-  const m = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, "0");
-  const s = String(timeLeft % 60).padStart(2, "0");
+      // if passed → next day
+      if (draw < now) {
+        draw.setDate(draw.getDate() + 1);
+      }
 
-  return <span>{h}:{m}:{s}</span>;
+      const diff = Math.floor((draw - now) / 1000);
+      setTimeLeft(diff > 0 ? diff : 0);
+    };
+
+    calculate();
+    const t = setInterval(calculate, 1000);
+    return () => clearInterval(t);
+  }, [drawTime]);
+
+  if (timeLeft === null) return <span>--:--:--</span>;
+
+  const hh = String(Math.floor(timeLeft / 3600)).padStart(2, "0");
+  const mm = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, "0");
+  const ss = String(timeLeft % 60).padStart(2, "0");
+
+  return <span>{hh}:{mm}:{ss}</span>;
 }

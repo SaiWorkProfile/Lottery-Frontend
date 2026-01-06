@@ -60,7 +60,7 @@ export default function HeaderInfo() {
 
       <div>
         time to draw<br />
-        <b><Countdown seconds={data.timeToDraw} /></b>
+        <b><Countdown drawTime={data.nextDrawTime} /></b>
       </div>
     </div>
   );
