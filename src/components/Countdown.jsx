@@ -1,46 +1,50 @@
 import { useEffect, useState } from "react";
 
 export default function Countdown({ drawTime }) {
-  const [timeLeft, setTimeLeft] = useState(null);
+  const [timeLeft, setTimeLeft] = useState("--:--:--");
 
   useEffect(() => {
-    if (!drawTime) {
-      setTimeLeft(null);
+    if (!drawTime || drawTime === "--") {
+      setTimeLeft("--:--:--");
       return;
     }
 
-    const calculate = () => {
+    const tick = () => {
       const now = new Date();
 
-      // drawTime example: "11:00 PM"
-      const [time, meridian] = drawTime.split(" ");
+      // parse "11:00 PM"
+      const [time, period] = drawTime.split(" ");
       let [h, m] = time.split(":").map(Number);
 
-      if (meridian === "PM" && h !== 12) h += 12;
-      if (meridian === "AM" && h === 12) h = 0;
+      if (period === "PM" && h !== 12) h += 12;
+      if (period === "AM" && h === 12) h = 0;
 
       const draw = new Date();
       draw.setHours(h, m, 0, 0);
 
       // if passed → next day
-      if (draw < now) {
+      if (draw <= now) {
         draw.setDate(draw.getDate() + 1);
       }
 
       const diff = Math.floor((draw - now) / 1000);
-      setTimeLeft(diff > 0 ? diff : 0);
+
+      if (diff <= 0) {
+        setTimeLeft("00:00:00");
+        return;
+      }
+
+      const hh = String(Math.floor(diff / 3600)).padStart(2, "0");
+      const mm = String(Math.floor((diff % 3600) / 60)).padStart(2, "0");
+      const ss = String(diff % 60).padStart(2, "0");
+
+      setTimeLeft(`${hh}:${mm}:${ss}`);
     };
 
-    calculate();
-    const t = setInterval(calculate, 1000);
-    return () => clearInterval(t);
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
   }, [drawTime]);
 
-  if (timeLeft === null) return <span>--:--:--</span>;
-
-  const hh = String(Math.floor(timeLeft / 3600)).padStart(2, "0");
-  const mm = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, "0");
-  const ss = String(timeLeft % 60).padStart(2, "0");
-
-  return <span>{hh}:{mm}:{ss}</span>;
+  return <span>{timeLeft}</span>;
 }
