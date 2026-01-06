@@ -25,7 +25,7 @@ export default function Results() {
   return (
     <div style={{ padding: "20px", background: "#e95555ff", minHeight: "100vh" }}>
 
-      <h1 style={{ textAlign: "center" }}>DAILY RESULT CHART</h1>
+      <h1 style={{ textAlign: "center" }}>DISAWARWIN DAILY RESULT CHART</h1>
 
       {/* DATE PICKER */}
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
