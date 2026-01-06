@@ -23,7 +23,7 @@ export default function Results() {
   }, [today]);
 
   return (
-    <div style={{ padding: "20px", background: "#55E2E9", minHeight: "100vh" }}>
+    <div style={{ padding: "20px", background: "#e95555ff", minHeight: "100vh" }}>
 
       <h1 style={{ textAlign: "center" }}>DAILY RESULT CHART</h1>
 
