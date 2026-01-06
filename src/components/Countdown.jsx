@@ -12,8 +12,8 @@ export default function Countdown({ drawTime }) {
     const tick = () => {
       const now = new Date();
 
-      // parse "11:00 PM"
-      const [time, period] = drawTime.split(" ");
+      const [time, rawPeriod] = drawTime.split(" ");
+      const period = rawPeriod.toUpperCase(); // ✅ FIX HERE
       let [h, m] = time.split(":").map(Number);
 
       if (period === "PM" && h !== 12) h += 12;
@@ -22,7 +22,6 @@ export default function Countdown({ drawTime }) {
       const draw = new Date();
       draw.setHours(h, m, 0, 0);
 
-      // if passed → next day
       if (draw <= now) {
         draw.setDate(draw.getDate() + 1);
       }
