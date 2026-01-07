@@ -224,6 +224,33 @@ body {
   border-radius: 10px;
   border: 2px solid #000;
 }
+/* ================= RESults ================= */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.marquee-text {
+  display: inline-block;
+  font-size: clamp(24px, 6vw, 42px);
+  font-weight: bold;
+  color: #ffee2f;
+  text-shadow: 0 0 8px #ffee2f;
+  animation: scrollLeftToRight 12s linear infinite;
+}
+
+/* 🔥 FIXED KEYFRAMES */
+@keyframes scrollLeftToRight {
+  0% {
+    transform: translateX(-50vw); /* fully outside left */
+  }
+  100% {
+    transform: translateX(100vw); /* fully outside right */
+  }
+}
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {

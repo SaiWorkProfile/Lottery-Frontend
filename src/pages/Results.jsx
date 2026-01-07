@@ -23,12 +23,15 @@ export default function Results() {
   }, [today]);
 
   return (
-    <div style={{ padding: "20px", background: "#e95555ff", minHeight: "100vh" }}>
+    <div style={{ padding: "20px", background: "#601111a4", minHeight: "100vh" }}>
 
-      <h1 style={{ textAlign: "center" }}>DISAWARWIN DAILY RESULT CHART</h1>
+     <div className="marquee-container">
+        <h1 className="marquee-text">DISAWARWIN</h1>
+      </div>
+      <h1 style={{ textAlign: "center", color:"#ffee2f"}}>DAILY RESULT CHART</h1>
 
       {/* DATE PICKER */}
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div style={{ textAlign: "center", marginBottom: "20px",color:"#ffee2f" }}>
         <label style={{ fontSize: "18px", marginRight: "10px" }}>
           Select Date
         </label>
@@ -46,7 +49,7 @@ export default function Results() {
             marginLeft: "10px",
             padding: "6px 20px",
             fontSize: "16px",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           Search
@@ -64,7 +67,7 @@ export default function Results() {
         }}
       >
         <thead>
-          <tr style={{ background: "#f5f5f5" }}>
+          <tr style={{ background: "#f5f5f5"}}>
             <th style={th}>Draw Time</th>
             <th style={th}>DISAWAR-A</th>
             <th style={th}>DISAWAR-B</th>
@@ -91,8 +94,9 @@ export default function Results() {
           ))}
         </tbody>
       </table>
-
+        <footer style={{background:"#ad07fa",color:"white",margin:"10px"}}>Viewing This WebSite Is On Your Own Risk.. All The information Shown On Website only for Information Purposes .. We Are Not Associated with Any Illegal Matka Business or Gamblers.. We Warn You That Matka Gambling in Your Country May be Banned or Illegal... We Are Not Responsible For Any Issues or Scam... We Respect All Country Rules/Laws... If You Not Agree With Our Site Disclaimer... Please Quit Our Site Right Now. Copying/Promoting/Publishing Any of Our Content in Any Type Of Media or Other Source is Illegal and against Law.</footer>
     </div>
+    
   );
 }
 
