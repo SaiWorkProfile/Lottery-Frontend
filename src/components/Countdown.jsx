@@ -39,7 +39,6 @@ export default function Countdown({ drawTime }) {
 
       setTimeLeft(`${hh}:${mm}:${ss}`);
     };
-
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
