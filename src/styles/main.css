@@ -276,11 +276,3 @@ body {
     font-size: 11px;
   }
 }
-@media (max-width: 768px) {
-  .page-wrapper {
-    max-width: 100%;
-    margin: 0;
-    border: none;
-    background: #601111; /* brown */
-  }
-}
