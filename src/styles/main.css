@@ -1,4 +1,4 @@
-/* ================= RESET ================= */
+ /* ================= RESET ================= */
 * {
   box-sizing: border-box;
 }
@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #640f0f00;
+  background: #000;
   overflow-x: hidden;
 }
 
@@ -260,7 +260,7 @@ body {
     border: none;
   }
 
-  .header-box { 
+  .header-box {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     font-size: 11px;
