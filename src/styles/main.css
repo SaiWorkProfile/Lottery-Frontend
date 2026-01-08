@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #601111; /* 🔥 brown instead of black */
+  background: #000;
   overflow-x: hidden;
 }
 
@@ -96,6 +96,7 @@ body {
   background: #fff;
 }
 
+/* HEADERS */
 .bet-table th {
   background: red;
   color: #fff;
@@ -105,13 +106,22 @@ body {
   white-space: nowrap;
 }
 
+/* CELLS */
 .bet-table td {
   font-size: 12px;
   padding: 6px;
   border: 1px solid #000;
   text-align: center;
+  background: inherit;
 }
 
+/* NAME COLUMN */
+.bet-table .name {
+  font-weight: bold;
+  line-height: 16px;
+}
+
+/* INPUT BOX */
 .num-box {
   width: 32px;
   height: 24px;
@@ -120,25 +130,45 @@ body {
   text-align: center;
 }
 
+/* ROW COLORS */
 .row-yellow { background: #ffff66; }
 .row-orange { background: #ff6600; }
 .row-green  { background: #66ff66; }
 
+/* TOTAL ROW */
 .total-row {
   background: orange;
   font-weight: bold;
 }
 
-/* ================= STICKY COLUMNS ================= */
+/* ================= STICKY LAST 3 COLUMNS ================= */
 .bet-table .sticky {
   position: sticky;
   z-index: 3;
   background: inherit !important;
 }
 
-.bet-table .qty { right: 120px; }
-.bet-table .amount { right: 60px; }
-.bet-table .result { right: 0; }
+.bet-table .qty {
+  right: 120px;
+  min-width: 50px;
+}
+
+.bet-table .amount {
+  right: 60px;
+  min-width: 60px;
+}
+
+.bet-table .result {
+  right: 0;
+  min-width: 60px;
+}
+
+/* HEADER STICKY */
+.bet-table th.sticky {
+  background: red !important;
+  color: #fff;
+  z-index: 4;
+}
 
 /* ================= RESULT BUTTON ================= */
 .result-btn {
@@ -153,6 +183,18 @@ body {
   display: block;
 }
 
+/* ================= DISCLAIMER ================= */
+.site-disclaimer {
+  margin: 16px;
+  padding: 14px;
+  font-size: 12px;
+  line-height: 18px;
+  background: #222;
+  color: #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
 /* ================= ADMIN ================= */
 .admin-page {
   max-width: 520px;
@@ -161,6 +203,11 @@ body {
   background: #fff;
   border-radius: 12px;
   border: 2px solid #000;
+}
+
+.admin-page h3 {
+  text-align: center;
+  margin-bottom: 18px;
 }
 
 .admin-page input,
@@ -177,77 +224,33 @@ body {
   border-radius: 10px;
   border: 2px solid #000;
 }
-
-/* ======================================================
-   🔥 RESULT PAGE (NEW & FIXED)
-====================================================== */
-.results-page {
-  min-height: 100vh;
-  background: #601111;
-  padding: 10px;
-}
-
-.results-title {
-  text-align: center;
-  color: #ffee2f;
-  font-size: clamp(22px, 6vw, 40px);
-  margin: 10px 0;
-}
-
-/* Date filter */
-.date-filter {
-  text-align: center;
-  margin-bottom: 16px;
-  color: #ffee2f;
-}
-
-.date-filter input,
-.date-filter button {
-  padding: 6px;
-  font-size: 16px;
-}
-
-/* Result table */
-.table-scroll {
+/* ================= RESults ================= */
+.marquee-container {
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
 }
 
-.result-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-}
-
-.result-table th,
-.result-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-  font-size: 16px;
-}
-
-.result-table th {
-  background: #f5f5f5;
+.marquee-text {
+  display: inline-block;
+  font-size: clamp(24px, 6vw, 42px);
   font-weight: bold;
+  color: #ffee2f;
+  text-shadow: 0 0 8px #ffee2f;
+  animation: scrollLeftToRight 12s linear infinite;
 }
 
-.no-data {
-  padding: 20px;
-  text-align: center;
+/* 🔥 FIXED KEYFRAMES */
+@keyframes scrollLeftToRight {
+  0% {
+    transform: translateX(-50vw); /* fully outside left */
+  }
+  100% {
+    transform: translateX(100vw); /* fully outside right */
+  }
 }
 
-/* Footer */
-.site-footer {
-  background: #ad07fa;
-  color: white;
-  padding: 14px;
-  font-size: 12px;
-  line-height: 18px;
-  margin: 14px;
-  border-radius: 8px;
-  text-align: center;
-}
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
@@ -257,21 +260,19 @@ body {
     border: none;
   }
 
-  .header-box {
+  .header-box { 
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     font-size: 11px;
+  }
+
+  .banner-text span {
+    font-size: 22px;
   }
 
   .num-box {
     width: 28px;
     height: 22px;
     font-size: 11px;
-  }
-
-  .result-table th,
-  .result-table td {
-    font-size: 14px;
-    padding: 6px;
   }
 }
