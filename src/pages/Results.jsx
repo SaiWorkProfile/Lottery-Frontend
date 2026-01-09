@@ -67,7 +67,7 @@ export default function Results() {
         }}
       >
         <thead>
-          <tr style={{ background: "#f5f5f5"}}>
+          <tr style={{ background: "#f5f5f5",color:"#891680ff",text:"bold"}}>
             <th style={th}>Draw Time</th>
             <th style={th}>DISAWAR-A</th>
             <th style={th}>DISAWAR-B</th>
